@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biosphere - Medical Innovations</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf5f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background: #087f5b;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 25px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #0002;
+        }
+
+        h2 {
+            color: #087f5b;
+        }
+
+        button {
+            background: #087f5b;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #055c42;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        .result {
+            background: #e0f2e9;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            color: #075c40;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Biosphere</h1>
+    <p>Biotechnology-Driven Medical Innovations</p>
+</header>
+
+<div class="container">
+
+    <h2>Explore Medical Innovations</h2>
+
+    <p id="description">
+        Biotechnology helps scientists develop advanced medical treatments.
+    </p>
+
+    <button onclick="changeText()">Explore More</button>
+
+    <hr>
+
+    <h2>Discover Biotechnology</h2>
+
+    <p id="message">Discover the future of medical science!</p>
+
+    <button onclick="showMessage()">Discover Now</button>
+
+    <hr>
+
+    <h2>Advanced Genetic Research</h2>
+
+    <p class="info">
+        Genetic engineering improves healthcare through advanced research.
+    </p>
+
+    <button onclick="changeColor()">Explore Research</button>
+
+    <hr>
+
+    <h2>Medical Innovation Enquiry</h2>
+
+    <form id="bioForm">
+        <label>Enter Your Name:</label>
+        <input type="text" id="username"
+               placeholder="Enter your name" required>
+
+        <label>Select Medical Innovation:</label>
+        <select id="innovation">
+            <option value="Gene Therapy">Gene Therapy</option>
+            <option value="Stem Cell Therapy">Stem Cell Therapy</option>
+            <option value="Tissue Engineering">Tissue Engineering</option>
+            <option value="Biotechnology">Biotechnology</option>
+        </select>
+
+        <button type="submit">Submit Enquiry</button>
+    </form>
+
+    <p id="formResult" class="result">
+        Your result will appear here.
+    </p>
+
+    <hr>
+
+    <h2>Latest Research Updates</h2>
+
+    <p id="timeoutResult">Waiting for research updates...</p>
+
+    <button onclick="startTimeout()">Get Updates</button>
+    <button onclick="stopTimeout()">Cancel Updates</button>
+
+    <hr>
+
+    <h2>Research Activity Timer</h2>
+
+    <p>Research Timer: <span id="counter">0</span> seconds</p>
+
+    <button onclick="startInterval()">Start Timer</button>
+    <button onclick="stopInterval()">Stop Timer</button>
+
+    <hr>
+
+    <h2>Manage Research Notifications</h2>
+
+    <p id="cancelMessage">A medical research notification is scheduled.</p>
+
+    <button onclick="scheduleNotification()">Schedule Notification</button>
+    <button onclick="cancelNotification()">Cancel Notification</button>
+
+    <hr>
+
+    <h2>Medical Research Monitoring</h2>
+
+    <p id="clock">Monitoring medical research...</p>
+
+    <button onclick="startMonitoring()">Start Monitoring</button>
+    <button onclick="stopMonitoring()">Stop Monitoring</button>
+
+</div>
+
+<footer>
+    <p>© 2026 Biosphere | Medical Innovations</p>
+</footer>
+
+<script>
+
+// 1. DOM Elements with IDs
+function changeText() {
+    document.getElementById("description").innerHTML =
+        "Biotechnology creates innovative solutions for modern healthcare.";
+}
+
+// 2. Buttons with onclick
+function showMessage() {
+    document.getElementById("message").innerHTML =
+        "Welcome to the world of biotechnology!";
+}
+
+// 3. querySelector()
+function changeColor() {
+    document.querySelector(".info").style.color = "green";
+}
+
+// 4. Interactive Form Element
+document.querySelector("#bioForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.querySelector("#username").value;
+    let topic = document.querySelector("#innovation").value;
+
+    document.querySelector("#formResult").innerHTML =
+        "Hello " + name + "! Your selected topic is " + topic + ".";
+});
+
+// 5. setTimeout()
+let timeout;
+
+function startTimeout() {
+    clearTimeout(timeout);
+
+    document.getElementById("timeoutResult").innerHTML =
+        "Research updates will appear in 3 seconds...";
+
+    timeout = setTimeout(function() {
+        document.getElementById("timeoutResult").innerHTML =
+            "New biotechnology research update available!";
+    }, 3000);
+}
+
+function stopTimeout() {
+    clearTimeout(timeout);
+
+    document.getElementById("timeoutResult").innerHTML =
+        "Research update cancelled.";
+}
+
+// 6. setInterval()
+let count = 0;
+let timer;
+
+function startInterval() {
+    if (timer) return;
+
+    timer = setInterval(function() {
+        count++;
+        document.getElementById("counter").innerHTML = count;
+    }, 1000);
+}
+
+function stopInterval() {
+    clearInterval(timer);
+    timer = null;
+}
+
+// 7. clearTimeout()
+let notification;
+
+function scheduleNotification() {
+    clearTimeout(notification);
+
+    document.getElementById("cancelMessage").innerHTML =
+        "Notification scheduled for 5 seconds...";
+
+    notification = setTimeout(function() {
+        document.getElementById("cancelMessage").innerHTML =
+            "Medical research notification received!";
+    }, 5000);
+}
+
+function cancelNotification() {
+    clearTimeout(notification);
+
+    document.getElementById("cancelMessage").innerHTML =
+        "Notification cancelled successfully!";
+}
+
+// 8. clearInterval()
+let monitoring;
+
+function startMonitoring() {
+    if (monitoring) return;
+
+    monitoring = setInterval(function() {
+        document.getElementById("clock").innerHTML =
+            "Research monitoring active at " +
+            new Date().toLocaleTimeString();
+    }, 1000);
+}
+
+function stopMonitoring() {
+    clearInterval(monitoring);
+    monitoring = null;
+
+    document.getElementById("clock").innerHTML =
+        "Research monitoring stopped.";
+}
+
+</script>
+
+</body>
+</html>
